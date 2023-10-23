@@ -10,25 +10,51 @@ class Stack:
     def push(self, item: object):
         self.string += item
 
-    def pop(self):
+    def pop(self) -> str:
         poped_item = self.string[-1]
         self.string = self.string[:-1]
         return poped_item
 
-    def peek(self):
+    def peek(self) -> str:
         return self.string[-1]
 
-    def size(self):
-        print(self.string)
+    def size(self) -> int:
         return len(self.string)
 
-    def task_2(self):
+    def task_2(self) -> bool:
+        ans = 0
+
         if len(self.string) % 2 != 0:
             return False
+        dict1 = {}
+        for i in range(len(self.string)):
+            if self.string[i] not in dict1:
+                dict1[self.string[i]] = 0
+            dict1[self.string[i]] += 1
+        for key, value in dict1.items():
+            if '(' in self.string and key == '(' and value != dict1[')']:
+                ans += 1
+            if '[' in self.string and key == '[' and value != dict1[']']:
+                ans += 1
+            if '{' in self.string and key == '{' and value != dict1['}']:
+                ans += 1
+        if ans >= 1:
+            return False
+        return True
+
+        
+
+
 
 
 if __name__ == '__main__':
-    st = Stack('123')
-    stringqq = '(((([{}]))))'
+    string1 = '(((([{}]))))'
+    string2 = '[([])((([[[]]])))]{()}'
+    string3 = '{{[()]}}'
+    string4 = '}{}'
+    string5 = '{{[(])]}}'
+    string6 = '[[{())}]'
+    string = ''
 
-
+    st = Stack(input())
+    print(st.task_2())

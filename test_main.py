@@ -33,16 +33,44 @@ class CheckStack(TestCase):
         result = st.size()
         self.assertEqual(result, expected)
 
-    def test_task_2_True(self):
-        string6 = '(((([{}]))))'
-        st = Stack(string6)
+    def test_string1(self):
+        string1 = '(((([{}]))))'
+        stack = Stack(string1)
+        result = stack.task_2()
         expected = True
-        result = st.task_2()
         self.assertEqual(expected, result)
 
-    def test_task_2_False(self):
-        string7 = '}{}'
-        st = Stack(string7)
+    def test_string2(self):
+        string2 = '[([])((([[[]]])))]{()}'
+        stack = Stack(string2)
+        result = stack.task_2()
+        expected = True
+        self.assertEqual(expected, result)
+
+    def test_string3(self):
+        string3 = '{{[()]}}'
+        stack = Stack(string3)
+        result = stack.task_2()
+        expected = True
+        self.assertEqual(expected, result)
+
+    def test_string4(self):
+        string4 = '}{}'
+        stack = Stack(string4)
+        result = stack.task_2()
         expected = False
-        result = st.task_2()
+        self.assertEqual(expected, result)
+
+    def test_string5(self):
+        string5 = '{{[(])]}}'
+        stack = Stack(string5)
+        result = stack.task_2()
+        expected = False
+        self.assertEqual(expected, result)
+
+    def test_string6(self):
+        string6 = '[[{())}]'
+        stack = Stack(string6)
+        result = stack.task_2()
+        expected = False
         self.assertEqual(expected, result)
